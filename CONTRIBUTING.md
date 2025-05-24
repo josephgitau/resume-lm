@@ -46,4 +46,10 @@ Thank you for your interest in helping improve **ResumeLM**! This project is und
 4. Open a pull request against the `main` branch and describe your changes.
 5. Link to any related issues in the PR description.
 
+## Code of Conduct and Templates
+
+Please make sure to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+When creating issues, use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md).
+Pull requests should include a summary and testing steps using the [PR template](.github/PULL_REQUEST_TEMPLATE.md).
+
 Thank you for contributing!
