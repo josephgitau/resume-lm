@@ -4,6 +4,7 @@ import { LanguageModelV1, streamText } from 'ai';
 import { createStreamableValue } from 'ai/rsc';
 import { initializeAIClient, type AIConfig } from '@/utils/ai-tools';
 import { getSubscriptionPlan } from '../stripe/actions';
+import { logger } from '@/utils/logger';
 
 export async function generate(input: string, config?: AIConfig) {
   try {
@@ -95,12 +96,12 @@ export async function generate(input: string, config?: AIConfig) {
         prompt: input,
         onFinish: ({ usage }) => {
          const { promptTokens, completionTokens, totalTokens } = usage;
-  
-         // your own logic, e.g. for saving the chat history or recording usage
-         console.log('----------Usage:----------');
-         console.log('Prompt tokens:', promptTokens);
-         console.log('Completion tokens:', completionTokens);
-         console.log('Total tokens:', totalTokens);
+
+         logger.debug('Cover letter generation usage', {
+           promptTokens,
+           completionTokens,
+           totalTokens,
+         });
        },
  
       });
@@ -115,7 +116,7 @@ export async function generate(input: string, config?: AIConfig) {
 
     return { output: stream.value };
   } catch (error) {
-    console.error('Error generating cover letter:', error);
+    logger.error('Error generating cover letter', error);
     throw error;
   }
 }

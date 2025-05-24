@@ -4,6 +4,7 @@ import { Stripe } from "stripe";
 import { createClient, createServiceClient } from '@/utils/supabase/server';
 import { Subscription } from '@/lib/types';
 import { revalidatePath } from "next/cache";
+import { logger } from '@/utils/logger';
 
 // Initialize stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -77,7 +78,7 @@ export async function manageSubscriptionStatusChange(
   customerId: string,
   isSubscriptionNew: boolean
 ) {
-  console.log('🔄 Starting subscription status change:', {
+  logger.info('Starting subscription status change', {
     subscriptionId,
     customerId,
     isNew: isSubscriptionNew,
@@ -87,20 +88,20 @@ export async function manageSubscriptionStatusChange(
   const supabase = await createServiceClient();
 
   // Get customer's UUID from Stripe metadata
-  console.log('🔍 Retrieving customer data from Stripe...');
+  logger.debug('Retrieving customer data from Stripe...');
   const customerData = await stripe.customers.retrieve(customerId);
   if ('deleted' in customerData) {
-    console.error('❌ Customer has been deleted');
+    logger.error('Customer has been deleted');
     throw new Error('Customer has been deleted');
   }
   const uuid = customerData.metadata.supabaseUUID;
-  console.log('✅ Retrieved customer UUID:', uuid);
+  logger.debug('Retrieved customer UUID', uuid);
 
-  console.log('📦 Retrieving subscription details from Stripe...');
+  logger.debug('Retrieving subscription details from Stripe...');
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ['default_payment_method', 'items.data.price']
   });
-  console.log('✅ Retrieved subscription details:', {
+  logger.debug('Retrieved subscription details', {
     id: subscription.id,
     status: subscription.status,
     currentPeriodEnd: new Date(subscription.items.data[0].current_period_end * 1000).toISOString()
@@ -125,10 +126,10 @@ export async function manageSubscriptionStatusChange(
       : null,
     updated_at: new Date().toISOString()
   };
-  console.log('\n📋 Prepared subscription data:', subscriptionData);
+  logger.debug('Prepared subscription data', subscriptionData);
 
   try {
-    console.log('🔍 Checking for existing subscription in database...');
+    logger.debug('Checking for existing subscription in database...');
     const { data: existingSubscription } = await supabase
       .from('subscriptions')
       .select('id')
@@ -136,19 +137,19 @@ export async function manageSubscriptionStatusChange(
       .single();
 
     if (existingSubscription) {
-      console.log('🔄 Updating existing subscription:', existingSubscription.id);
+      logger.debug('Updating existing subscription', existingSubscription.id);
       const { error } = await supabase
         .from('subscriptions')
         .update(subscriptionData)
         .eq('user_id', uuid);
 
       if (error) {
-        console.error('❌ Error updating subscription:', error);
+        logger.error('Error updating subscription', error);
         throw error;
       }
-      console.log('✅ Subscription updated successfully');
+      logger.info('Subscription updated successfully');
     } else {
-      console.log('➕ Creating new subscription record');
+      logger.debug('Creating new subscription record');
       const { error } = await supabase
         .from('subscriptions')
         .upsert(
@@ -163,15 +164,15 @@ export async function manageSubscriptionStatusChange(
         );
 
       if (error) {
-        console.error('❌ Error creating subscription:', error);
+        logger.error('Error creating subscription', error);
         throw error;
       }
-      console.log('✅ Subscription created successfully');
+      logger.info('Subscription created successfully');
     }
 
-    console.log('🎉 Subscription management completed successfully!');
+    logger.info('Subscription management completed successfully');
   } catch (error) {
-    console.error('💥 Error managing subscription:', {
+    logger.error('Error managing subscription', {
       error: error instanceof Error ? error.message : 'Unknown error',
       timestamp: new Date().toISOString()
     });
@@ -214,7 +215,7 @@ export async function getSubscriptionStatus() {
     throw new Error('User not authenticated');
   }
 
-  console.log(' looking for user ', user.id);
+  logger.debug('Looking for subscription for user', user.id);
 
   const { data: subscription, error: subscriptionError } = await supabase
     .from('subscriptions')
@@ -385,7 +386,7 @@ export async function toggleSubscriptionPlan(newPlan: 'free' | 'pro'): Promise<'
     revalidatePath('/');
     return newPlan;
   } catch (error) {
-    console.error('Subscription toggle error:', error);
+    logger.error('Subscription toggle error', error);
     throw new Error('Failed to toggle subscription plan');
   }
 }
