@@ -331,7 +331,10 @@ export async function copyResume(resumeId: string): Promise<Resume> {
   // Exclude fields that should be auto-generated for the new record
   // (id and timestamps). All other properties are copied as-is so the
   // duplicate looks the same as the source resume.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id: _id, created_at: _created, updated_at: _updated, ...resumeDataToCopy } = sourceResume;
+
+
 
 
   const newResume = {

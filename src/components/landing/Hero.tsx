@@ -1,9 +1,8 @@
 "use client";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { AuthDialog } from "@/components/auth/auth-dialog";
 import { motion, useInView } from "framer-motion";
-import { Sparkles, ArrowRight, Zap, Shield, Globe, Target, CheckCircle2 } from "lucide-react";
+import { Sparkles, ArrowRight, Shield, Zap, CheckCircle2 } from "lucide-react";
 import { useRef } from "react";
 
 export function Hero() {

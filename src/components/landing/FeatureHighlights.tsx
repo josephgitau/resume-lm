@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { motion, useInView } from "framer-motion";
-import { CheckCircle2, Sparkles, Zap, Target, Brain, MessageSquare, BarChart3, FileText, Star, ArrowRight, Globe, Shield, Rocket } from "lucide-react";
+import { CheckCircle2, Sparkles, Target, Brain, MessageSquare, BarChart3, FileText, Star, ArrowRight, Shield, Rocket } from "lucide-react";
 import Link from "next/link";
 import { AuthDialog } from "@/components/auth/auth-dialog";
 import { useRef } from 'react';
@@ -191,7 +191,7 @@ const FeatureHighlights = () => {
               Ready to Transform Your Career?
             </h2>
             <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
-              Join thousands of professionals who've accelerated their careers with AI-powered resume optimization
+              Join thousands of professionals who have accelerated their careers with AI-powered resume optimization
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

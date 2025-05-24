@@ -161,7 +161,7 @@ export function PricingPlans() {
                 
                 {/* Features */}
                 <div className="space-y-4">
-                  <h4 className="text-white font-semibold">What's included:</h4>
+                  <h4 className="text-white font-semibold">What is included:</h4>
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-start">
                       <Check className="h-5 w-5 text-emerald-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -186,7 +186,7 @@ export function PricingPlans() {
           <p className="text-slate-400">
             Need something custom? 
             <Link href="/contact" className="text-violet-400 hover:text-violet-300 ml-2 underline">
-              Let's talk
+              Let us talk
             </Link>
           </p>
         </motion.div>

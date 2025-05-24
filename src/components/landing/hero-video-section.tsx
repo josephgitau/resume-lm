@@ -161,7 +161,7 @@ export function HeroVideoSection() {
 
       {/* Call to Action */}
       <div className="text-center mt-16">
-        <p className="text-gray-600 mb-6">Join thousands of professionals who've transformed their careers</p>
+        <p className="text-gray-600 mb-6">Join thousands of professionals who have transformed their careers</p>
         <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
           <span>✓ ATS-Optimized</span>
           <span>✓ Industry-Specific</span>
