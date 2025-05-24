@@ -1,185 +1,225 @@
+"use client";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { AuthDialog } from "@/components/auth/auth-dialog";
+import { motion, useInView } from "framer-motion";
+import { Sparkles, ArrowRight, Zap, Shield, Globe, Target, CheckCircle2 } from "lucide-react";
+import { useRef } from "react";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, duration: 0.6 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const stats = [
+    { value: "10K+", label: "Resumes Created" },
+    { value: "89%", label: "Interview Rate" },
+    { value: "100%", label: "Free to Use" },
+    { value: "2min", label: "Setup Time" },
+  ];
+
   return (
-    <section className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 py-12 md:py-16 lg:py-20">
-      {/* Left Content */}
-      <div className="w-full lg:w-1/2 space-y-8">
-        {/* Tagline with gradient text */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-          <span className="block">Open source</span>
-          <span className="block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent animate-gradient">AI Resume Builder</span>
-          <span className="block">that lands you tech jobs</span>
-        </h1>
-        
-        {/* Description with quantifiable benefits */}
-        <p className="text-lg md:text-xl text-muted-foreground max-w-md">
-          Create ATS-optimized tech resumes in under 10 minutes. 3x your interview chances with AI-powered resume tailoring.
-        </p>
-        
-        {/* CTAs with enhanced accessibility and effects */}
-        <div className="flex flex-col sm:flex-row gap-4 mt-8">
-          <AuthDialog>
-            <button 
-              className="relative group px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium transition-all duration-500 hover:-translate-y-1 hover:shadow-xl flex items-center justify-center"
-              aria-label="Create your resume now"
-            >
-              <span>Create Resume</span>
-              <svg className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-              <div className="absolute inset-0 rounded-lg bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </button>
-          </AuthDialog>
-          <Link 
-            href="https://github.com/olyaiy/resume-lm" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-lg bg-white/40 backdrop-blur-md border border-white/40 font-medium transition-all duration-500 hover:-translate-y-1 hover:bg-white/50 hover:shadow-xl"
-            aria-label="View source code on GitHub"
+    <section 
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center py-24 md:py-32 px-4 bg-slate-900"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Hero Content */}
+        <motion.div
+          className="text-center mb-20"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Badge */}
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center mb-6"
           >
-            Open Source on Github
-          </Link>
-        </div>
-        
-        {/* Feature badges with improved visual interest */}
-        <div className="flex flex-wrap gap-3 mt-6">
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-purple-600/10 to-indigo-600/10 text-sm border border-purple-200/40 text-purple-700">AI-Powered</span>
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-teal-600/10 to-cyan-600/10 text-sm border border-teal-200/40 text-teal-700">ATS-Optimized</span>
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-600/10 to-green-600/10 text-sm border border-emerald-200/40 text-emerald-700">100% Free</span>
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-blue-600/10 to-sky-600/10 text-sm border border-blue-200/40 text-blue-700">Privacy-First</span>
-        </div>
-        
-        {/* Enhanced social proof section */}
-        <div className="relative group mt-8">
-          {/* Background blur effect that animates on hover */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/5 to-indigo-600/5 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-          
-          {/* Main content container */}
-          <div className="relative flex items-center p-5 rounded-xl bg-white/30 backdrop-blur-md border border-white/40 shadow-lg transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-gradient-to-br from-purple-600/20 to-indigo-600/20 blur-md"></div>
-            <div className="absolute -left-16 -bottom-16 w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-600/10 to-purple-600/10 blur-lg"></div>
-            
-            {/* Stats highlight with gradient */}
-            <div className="flex-shrink-0 mr-5 relative">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-purple-600/10 to-indigo-600/10 border border-purple-600/20 shadow-inner overflow-hidden">
-                <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">500+</span>
-              </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/20 border border-violet-400/30 text-violet-300 text-sm font-medium">
+              <Sparkles className="h-4 w-4" />
+              AI-Powered Resume Builder
             </div>
+          </motion.div>
+
+          {/* Main Headline */}
+          <motion.div variants={itemVariants}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 text-white">
+              Build Better Resumes
+              <span className="block text-violet-400 mt-2">with AI</span>
+            </h1>
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-slate-400 max-w-4xl mx-auto leading-relaxed mb-12"
+          >
+            Create ATS-optimized resumes tailored for tech roles. Land more interviews with AI-powered optimization that increases your chances by up to <span className="text-cyan-400 font-semibold">300%</span>
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <AuthDialog>
+              <button className="group px-8 py-4 bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-500 hover:to-violet-600 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+                <span className="flex items-center gap-2">
+                  Create Resume Now
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </span>
+              </button>
+            </AuthDialog>
             
-            {/* Text content with testimonial */}
-            <div className="flex-1">
-              <h3 className="font-semibold text-base">Join our growing community</h3>
-              <p className="text-sm text-muted-foreground">Trusted by over 500 tech professionals</p>
-              
-              <p className="text-xs italic mt-1 text-purple-600">&ldquo;Landed 3 interviews in my first week using ResumeLM&rdquo; — Sarah K.</p>
-              
-              {/* Shadcn Avatar stack */}
-              <div className="flex items-center mt-3">
-                <div className="flex -space-x-2 mr-3">
-                  <Avatar className="h-7 w-7 border-2 border-background">
-                    <AvatarFallback className="bg-gradient-to-br from-purple-500 to-indigo-500 text-white text-xs">JD</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="h-7 w-7 border-2 border-background">
-                    <AvatarFallback className="bg-gradient-to-br from-pink-500 to-rose-500 text-white text-xs">SR</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="h-7 w-7 border-2 border-background">
-                    <AvatarFallback className="bg-gradient-to-br from-teal-500 to-cyan-500 text-white text-xs">KL</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="h-7 w-7 border-2 border-background">
-                    <AvatarFallback className="bg-gradient-to-br from-amber-500 to-orange-500 text-white text-xs">MP</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="h-7 w-7 border-2 border-background">
-                    <AvatarFallback className="bg-white text-xs text-indigo-600 font-medium">496+</AvatarFallback>
-                  </Avatar>
+            <Link 
+              href="https://github.com/olyaiy/resume-lm" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900"
+              aria-label="View source code on GitHub"
+            >
+              View on GitHub
+            </Link>
+          </motion.div>
+
+          {/* Statistics */}
+          <motion.div 
+            variants={itemVariants}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto"
+          >
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl font-bold text-white mb-1">
+                  {stat.value}
                 </div>
-                <span className="text-xs text-muted-foreground">Active this month</span>
+                <div className="text-slate-400 text-sm font-medium">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Trust Indicators */}
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-6 text-slate-400 mb-20">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              <span>Free Forever</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-cyan-400" />
+              <span>Privacy-First</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-violet-400" />
+              <span>AI-Powered</span>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Resume Preview Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
+          {/* Before Resume */}
+          <div className="group p-6 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-slate-600 transition-all duration-300">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-bold text-slate-300 mb-2">Before AI</h3>
+              <p className="text-sm text-slate-500">Generic resume template</p>
+            </div>
+            <div className="bg-white/95 rounded-xl p-4 h-64 space-y-3">
+              <div className="h-4 bg-slate-400 rounded w-32" />
+              <div className="h-3 bg-slate-300 rounded w-24" />
+              <div className="border-b border-slate-200 my-3" />
+              <div className="space-y-2">
+                <div className="h-3 bg-slate-300 rounded w-20" />
+                <div className="h-2 bg-slate-200 rounded w-full" />
+                <div className="h-2 bg-slate-200 rounded w-5/6" />
+                <div className="h-2 bg-slate-200 rounded w-4/5" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-3 bg-slate-300 rounded w-16" />
+                <div className="flex gap-1">
+                  <div className="h-4 bg-slate-200 rounded px-2 w-12" />
+                  <div className="h-4 bg-slate-200 rounded px-2 w-16" />
+                  <div className="h-4 bg-slate-200 rounded px-2 w-10" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      {/* Right Content - Enhanced resume mockups */}
-      <div className="w-full lg:w-1/2 relative">
-        {/* Main resume mockup with improved visual details */}
-        <div className="relative w-full aspect-[3/4] rounded-2xl bg-white/40 backdrop-blur-md border border-white/40 shadow-xl overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-          {/* Resume header with more realistic details */}
-          <div className="absolute top-0 left-0 w-full h-[15%] bg-gradient-to-r from-purple-600/90 to-indigo-600/90">
-            <div className="absolute top-6 left-8 w-[50%] h-[20%] bg-white/90 rounded-sm"></div>
-            <div className="absolute bottom-0 left-8 w-[30%] h-[20%] bg-white/80 rounded-t-lg"></div>
+
+          {/* AI Process */}
+          <div className="group p-6 rounded-2xl bg-violet-500/10 border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300">
+            <div className="text-center mb-6">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-violet-500 flex items-center justify-center">
+                <Sparkles className="w-6 h-6 text-white animate-pulse" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">AI Magic</h3>
+              <p className="text-sm text-violet-200">Intelligent optimization</p>
+            </div>
+            <div className="space-y-4">
+              {[
+                { text: "Content Analysis", icon: "🧠" },
+                { text: "ATS Optimization", icon: "🎯" },
+                { text: "Keyword Enhancement", icon: "✨" },
+                { text: "Format Polishing", icon: "🎨" }
+              ].map((step, index) => (
+                <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-violet-500/20 border border-violet-400/20">
+                  <span className="text-lg">{step.icon}</span>
+                  <span className="text-violet-200 font-medium">{step.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          
-          {/* Resume content with more realistic structure */}
-          <div className="absolute top-[20%] left-8 w-[80%] h-[4%] bg-slate-200/70 rounded-md"></div>
-          <div className="absolute top-[26%] left-8 w-[60%] h-[3%] bg-slate-200/60 rounded-md"></div>
-          <div className="absolute top-[30%] left-8 w-[70%] h-[3%] bg-slate-200/50 rounded-md"></div>
-          
-          {/* Experience Section */}
-          <div className="absolute top-[36%] left-8 w-[35%] h-[4%] bg-purple-200/70 rounded-md"></div>
-          <div className="absolute top-[42%] left-8 w-[80%] h-[3%] bg-slate-200/60 rounded-md"></div>
-          <div className="absolute top-[46%] left-8 w-[75%] h-[3%] bg-slate-200/60 rounded-md"></div>
-          <div className="absolute top-[50%] left-8 w-[70%] h-[3%] bg-slate-200/50 rounded-md"></div>
-          
-          {/* Skills Section */}
-          <div className="absolute top-[56%] left-8 w-[35%] h-[4%] bg-purple-200/70 rounded-md"></div>
-          <div className="absolute top-[62%] right-8 flex flex-wrap gap-2 w-[80%]">
-            <div className="h-[12px] w-[60px] bg-purple-100/80 rounded-full"></div>
-            <div className="h-[12px] w-[70px] bg-indigo-100/80 rounded-full"></div>
-            <div className="h-[12px] w-[50px] bg-blue-100/80 rounded-full"></div>
-            <div className="h-[12px] w-[80px] bg-teal-100/80 rounded-full"></div>
-            <div className="h-[12px] w-[65px] bg-cyan-100/80 rounded-full"></div>
+
+          {/* After Resume */}
+          <div className="group p-6 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-bold text-white mb-2">After AI</h3>
+              <p className="text-sm text-emerald-200">Optimized & professional</p>
+              <div className="absolute -top-2 -right-2 px-2 py-1 bg-emerald-500 text-white text-xs font-bold rounded-full">
+                +300% better
+              </div>
+            </div>
+            <div className="bg-white/95 rounded-xl p-4 h-64 space-y-3 relative">
+              <div className="absolute top-2 right-2 w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
+              <div className="h-4 bg-slate-700 rounded w-40 font-semibold" />
+              <div className="h-3 bg-slate-600 rounded w-32" />
+              <div className="border-b border-slate-200 my-3" />
+              <div className="space-y-2">
+                <div className="h-3 bg-emerald-500 rounded w-24" />
+                <div className="h-2 bg-slate-700 rounded w-full" />
+                <div className="h-2 bg-slate-600 rounded w-full" />
+                <div className="h-2 bg-slate-500 rounded w-5/6" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-3 bg-cyan-500 rounded w-12" />
+                <div className="flex gap-1">
+                  <div className="h-4 bg-emerald-200 rounded px-2 w-14 border border-emerald-400" />
+                  <div className="h-4 bg-cyan-200 rounded px-2 w-18 border border-cyan-400" />
+                  <div className="h-4 bg-violet-200 rounded px-2 w-12 border border-violet-400" />
+                </div>
+              </div>
+            </div>
           </div>
-          
-          {/* Education Section */}
-          <div className="absolute top-[70%] left-8 w-[35%] h-[4%] bg-purple-200/70 rounded-md"></div>
-          <div className="absolute top-[76%] left-8 w-[80%] h-[3%] bg-slate-200/60 rounded-md"></div>
-          <div className="absolute top-[80%] left-8 w-[75%] h-[3%] bg-slate-200/60 rounded-md"></div>
-          <div className="absolute top-[84%] left-8 w-[70%] h-[3%] bg-slate-200/50 rounded-md"></div>
-          
-          {/* AI optimization indicator */}
-          <div className="absolute bottom-4 right-4 px-2 py-1 rounded-md bg-gradient-to-r from-purple-600/20 to-indigo-600/20 border border-purple-300/30 text-[10px] text-purple-700">
-            AI Optimized
-          </div>
-        </div>
-        
-        {/* Tailored resume variant */}
-        <div className="absolute -bottom-12 -left-8 w-[40%] aspect-[3/4] rounded-xl bg-white/30 backdrop-blur-md border border-white/30 shadow-lg overflow-hidden rotate-[-8deg] z-10 transition-all duration-500 hover:rotate-[-4deg] hover:-translate-y-2">
-          <div className="w-full h-[10%] bg-gradient-to-r from-pink-600/80 to-rose-600/80">
-            <div className="absolute top-2 left-2 w-[40%] h-[5%] bg-white/80 rounded-sm"></div>
-          </div>
-          <div className="absolute top-[15%] left-2 right-2 h-[80%] flex flex-col gap-1">
-            <div className="h-[8px] w-[80%] bg-slate-200/60 rounded-sm"></div>
-            <div className="h-[8px] w-[70%] bg-slate-200/60 rounded-sm"></div>
-            <div className="mt-2 h-[8px] w-[50%] bg-pink-200/70 rounded-sm"></div>
-            <div className="h-[8px] w-[80%] bg-slate-200/50 rounded-sm"></div>
-            <div className="h-[8px] w-[75%] bg-slate-200/50 rounded-sm"></div>
-          </div>
-          <div className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-pink-100/50 border border-pink-200/30 text-[8px] text-pink-700">
-            Tailored
-          </div>
-        </div>
-        
-        {/* Technical role variant */}
-        <div className="absolute -top-10 -right-6 w-[40%] aspect-[3/4] rounded-xl bg-white/30 backdrop-blur-md border border-white/30 shadow-lg overflow-hidden rotate-[8deg] z-10 transition-all duration-500 hover:rotate-[4deg] hover:-translate-y-2">
-          <div className="w-full h-[10%] bg-gradient-to-r from-teal-600/80 to-cyan-600/80">
-            <div className="absolute top-2 left-2 w-[40%] h-[5%] bg-white/80 rounded-sm"></div>
-          </div>
-          <div className="absolute top-[15%] left-2 right-2 h-[80%] flex flex-col gap-1">
-            <div className="h-[8px] w-[80%] bg-slate-200/60 rounded-sm"></div>
-            <div className="h-[8px] w-[70%] bg-slate-200/60 rounded-sm"></div>
-            <div className="mt-2 h-[8px] w-[50%] bg-teal-200/70 rounded-sm"></div>
-            <div className="h-[8px] w-[80%] bg-slate-200/50 rounded-sm"></div>
-            <div className="h-[8px] w-[75%] bg-slate-200/50 rounded-sm"></div>
-          </div>
-          <div className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-teal-100/50 border border-teal-200/30 text-[8px] text-teal-700">
-            Technical
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-} 
+}

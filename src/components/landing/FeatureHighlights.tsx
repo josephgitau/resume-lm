@@ -1,317 +1,235 @@
 "use client"
 import React from 'react';
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { CheckCircle2, Sparkles, Zap, Target, Brain, MessageSquare, BarChart3, FileText, Star, ArrowRight, Globe, Shield, Rocket } from "lucide-react";
 import Link from "next/link";
-import { SplitContent } from '../ui/split-content';
 import { AuthDialog } from "@/components/auth/auth-dialog";
+import { useRef } from 'react';
 
 const FeatureHighlights = () => {
-  // Enhanced features with metrics, testimonials, and benefit-focused language
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-
-  // Trusted by logos
-  const companies = [
-    { name: "Google", logo: "/logos/google.png" },
-    { name: "Microsoft", logo: "/logos/microsoft.webp" },
-    { name: "Amazon", logo: "/logos/amazon.png" },
-    { name: "Meta", logo: "/logos/meta.png" },
-    { name: "Netflix", logo: "/logos/netflix.png" },
+  const features = [
+    {
+      icon: <Brain className="h-8 w-8" />,
+      title: "AI-Powered Resume Assistant",
+      description: "Advanced AI analyzes your experience and suggests optimized content that passes ATS systems and impresses recruiters.",
+      metrics: "90% more effective bullets",
+      benefits: [
+        "Smart content suggestions based on your experience",
+        "Real-time feedback and optimization",
+        "Industry-specific keyword optimization",
+        "ATS compatibility scoring"
+      ],
+      color: "violet"
+    },
+    {
+      icon: <BarChart3 className="h-8 w-8" />,
+      title: "Smart Performance Analytics",
+      description: "Get detailed insights into your resume's effectiveness with comprehensive scoring and improvement recommendations.",
+      metrics: "3x higher response rates",
+      benefits: [
+        "ATS compatibility analysis",
+        "Keyword density optimization",
+        "Industry benchmark comparisons",
+        "Performance tracking dashboard"
+      ],
+      color: "cyan"
+    },
+    {
+      icon: <MessageSquare className="h-8 w-8" />,
+      title: "Dynamic Cover Letter Generator",
+      description: "Create compelling, personalized cover letters that perfectly match job requirements and your unique experience.",
+      metrics: "Save 30+ minutes per application",
+      benefits: [
+        "Job-specific personalization",
+        "Professional tone optimization",
+        "Achievement highlighting",
+        "Multi-format export options"
+      ],
+      color: "emerald"
+    },
+    {
+      icon: <Target className="h-8 w-8" />,
+      title: "Job-Tailored Optimization",
+      description: "Automatically adapt your resume for each job application with intelligent matching and keyword optimization.",
+      metrics: "89% interview success rate",
+      benefits: [
+        "One-click job matching",
+        "Custom resume variations",
+        "Skills gap analysis",
+        "Interview preparation insights"
+      ],
+      color: "pink"
+    }
   ];
 
-  // Statistics counters
   const stats = [
-    { value: "500+", label: "Resumes Created" },
-    { value: "89%", label: "Interview Rate" },
-    { value: "4.9/5", label: "User Rating" },
-    { value: "15 min", label: "Average Setup Time" },
+    { value: "10,000+", label: "Resumes Created", icon: <FileText className="h-5 w-5" /> },
+    { value: "89%", label: "Interview Rate", icon: <Target className="h-5 w-5" /> },
+    { value: "4.9/5", label: "User Rating", icon: <Star className="h-5 w-5" /> },
+    { value: "2 min", label: "Setup Time", icon: <Rocket className="h-5 w-5" /> },
   ];
 
-  // Animation variants for scroll reveal
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+  const getColorClasses = (color: string) => {
+    const colors = {
+      violet: { bg: "bg-violet-500", text: "text-violet-400", border: "border-violet-400/30" },
+      cyan: { bg: "bg-cyan-500", text: "text-cyan-400", border: "border-cyan-400/30" },
+      emerald: { bg: "bg-emerald-500", text: "text-emerald-400", border: "border-emerald-400/30" },
+      pink: { bg: "bg-pink-500", text: "text-pink-400", border: "border-pink-400/30" },
     }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+    return colors[color as keyof typeof colors] || colors.violet;
   };
 
   return (
-    <section className="py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
-      {/* Enhanced decorative elements */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-purple-200/30 to-indigo-200/30 blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-teal-200/30 to-cyan-200/30 blur-3xl"></div>
-      <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-pink-200/20 to-rose-200/20 blur-3xl"></div>
- 
-      {/* Redesigned heading section with enhanced visual appeal */}
-      <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Decorative elements specific to the heading */}
-        <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-violet-200/15 to-indigo-200/15 blur-3xl -z-10"></div>
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-br from-cyan-200/20 to-teal-200/20 blur-3xl -z-10"></div>
-        <div className="absolute -bottom-10 -left-20 w-72 h-72 rounded-full bg-gradient-to-tr from-rose-200/20 to-pink-200/20 blur-3xl -z-10"></div>
-        
-        {/* Leading badges - multi-color approach inspired by Hero.tsx */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center gap-3 mb-4"
-        >
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-purple-600/10 to-indigo-600/10 border border-purple-200/40 text-sm text-purple-700">
-            AI-Powered
-          </span>
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-teal-600/10 to-cyan-600/10 border border-teal-200/40 text-sm text-teal-700">
-            ATS-Optimized
-          </span>
-          <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-600/10 to-green-600/10 border border-emerald-200/40 text-sm text-emerald-700">
-            100% Free
-          </span>
-        </motion.div>
-        
-        {/* Heading with enhanced typography */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-center mb-4"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-            <span className="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              The Resume Builder
+    <section 
+      ref={sectionRef}
+      className="relative py-24 md:py-32 px-4 bg-slate-900" 
+      id="features"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div className="flex justify-center gap-3 mb-6">
+            <span className="px-4 py-2 rounded-full bg-violet-500/20 border border-violet-400/30 text-violet-300 text-sm font-medium">
+              <Sparkles className="inline h-4 w-4 mr-2" />
+              AI-Powered
             </span>
-            <br />
-            <motion.span 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="inline-block mt-1 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent"
-            >
-              That Gets You Hired
-            </motion.span>
+            <span className="px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 text-sm font-medium">
+              <Target className="inline h-4 w-4 mr-2" />
+              ATS-Optimized
+            </span>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white">
+            Resume Intelligence
+            <span className="block text-violet-400 mt-2">That Delivers Results</span>
           </h2>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mt-3"
-          >
-            Smart AI tools that optimize your resume for each job, increasing your interview chances by up to <span className="font-semibold text-teal-700">3x</span>
-          </motion.p>
-        </motion.div>
-
-        {/* Enhanced statistics with animated reveal - no cards, just colorful inline stats */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-8 md:gap-12 mx-auto mt-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {stats.map((stat, index) => {
-            // Different gradient colors for each stat
-            const gradients = [
-              "from-purple-600 to-indigo-600",
-              "from-teal-600 to-cyan-600", 
-              "from-pink-600 to-rose-600",
-              "from-emerald-600 to-green-600"
-            ];
-            
-            const textColors = [
-              "text-purple-700",
-              "text-teal-700",
-              "text-pink-700", 
-              "text-emerald-700"
-            ];
-            
-            return (
+          <p className="text-lg text-slate-400 max-w-4xl mx-auto leading-relaxed">
+            Transform your career with AI-powered resume optimization that increases interview chances by up to <span className="text-cyan-400 font-semibold">300%</span>
+          </p>
+          
+          {/* Statistics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto">
+            {stats.map((stat, index) => (
               <motion.div 
                 key={index}
-                variants={itemVariants}
-                className="text-center relative"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
               >
-                <motion.p 
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
-                  className="text-3xl md:text-4xl font-bold"
-                >
-                  <span className={`bg-gradient-to-r ${gradients[index]} bg-clip-text text-transparent`}>
-                    {stat.value}
-                  </span>
-                </motion.p>
-                <p className={`text-sm md:text-base ${textColors[index]} mt-1`}>
+                <div className="text-3xl font-bold text-white mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-slate-400 text-sm font-medium">
                   {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Features Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-20">
+          {features.map((feature, index) => {
+            const colorClasses = getColorClasses(feature.color);
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group p-8 rounded-2xl bg-slate-800/50 border border-slate-700 hover:border-slate-600 hover:bg-slate-800/70 transition-all duration-300"
+              >
+                {/* Feature Header */}
+                <div className="flex items-start gap-4 mb-6">
+                  <div className={`p-3 rounded-xl ${colorClasses.bg}`}>
+                    <div className="text-white">
+                      {feature.icon}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                    <div className={`inline-block px-3 py-1 rounded-full bg-slate-700/50 border ${colorClasses.border} text-sm ${colorClasses.text} font-medium`}>
+                      {feature.metrics}
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-slate-300 text-base leading-relaxed mb-6">
+                  {feature.description}
                 </p>
+                
+                {/* Benefits List */}
+                <div className="space-y-3">
+                  {feature.benefits.map((benefit, i) => (
+                    <div key={i} className="flex items-start">
+                      <CheckCircle2 className={`h-5 w-5 ${colorClasses.text} mr-3 mt-0.5 flex-shrink-0`} />
+                      <span className="text-slate-300">
+                        {benefit}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
         
-        {/* Colorful separators */}
-        <div className="flex justify-center my-12">
-          <div className="w-16 h-[3px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-1"></div>
-          <div className="w-16 h-[3px] bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full mx-1"></div>
-          <div className="w-16 h-[3px] bg-gradient-to-r from-pink-500 to-rose-500 rounded-full mx-1"></div>
-        </div>
-      </div>
-      
-      {/* Enhanced Features Section with improved card styling */}
-      <div className="flex flex-col gap-24 py-24 relative" id="features">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-50/30 to-transparent"></div>
+        {/* CTA Section */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center"
+        >
+          <div className="max-w-4xl mx-auto p-12 rounded-2xl bg-slate-800/50 border border-slate-700">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Ready to Transform Your Career?
+            </h2>
+            <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
+              Join thousands of professionals who've accelerated their careers with AI-powered resume optimization
+            </p>
             
-            <SplitContent
-              imageSrc="/SS Chat.png"
-              heading="AI-Powered Resume Assistant"
-              description="Get real-time feedback and suggestions from our advanced AI assistant. Optimize your resume content, improve your bullet points, and ensure your skills stand out to recruiters and ATS systems."
-              imageOnLeft={false}
-              imageOverflowRight={true}
-              badgeText="90% more effective bullets"
-              badgeGradient="from-purple-600/10 to-indigo-600/10"
-              bulletPoints={[
-                "Smart content suggestions based on your experience",
-                "Real-time feedback on your resume",
-                "Industry-specific optimization"
-              ]}
-            />
-
-            <SplitContent
-              imageSrc="/Dashboard Image.png"
-              heading="Beautiful Resume Dashboard"
-              description="Manage all your resumes in one place with our intuitive dashboard. Create base resumes, generate tailored versions for specific jobs, and track your application progress with ease."
-              imageOnLeft={true}
-              badgeText="Organize your job search"
-              badgeGradient="from-teal-600/10 to-cyan-600/10"
-              bulletPoints={[
-                "Centralized resume management",
-                "Version control for all your resumes",
-                "Track application status"
-              ]}
-            />
-
-            <SplitContent
-              imageSrc="/SS Score.png"
-              heading="Resume Performance Scoring"
-              description="Get detailed insights into your resume's effectiveness with our comprehensive scoring system. Track key metrics, identify areas for improvement, and optimize your resume to stand out to employers and ATS systems."
-              imageOnLeft={false}
-              imageOverflowRight={true}
-              badgeText="3x higher response rates"
-              badgeGradient="from-pink-600/10 to-rose-600/10"
-              bulletPoints={[
-                "ATS compatibility scoring",
-                "Keyword optimization insights",
-                "Detailed improvement recommendations"
-              ]}
-            />
-
-            <SplitContent
-              imageSrc="/SS Cover Letter.png"
-              heading="AI Cover Letter Generator"
-              description="Create compelling, personalized cover letters in minutes with our AI-powered generator. Tailor your message to specific job opportunities while maintaining a professional and engaging tone that captures attention."
-              imageOnLeft={true}
-              badgeText="Save 30+ minutes per application"
-              badgeGradient="from-emerald-600/10 to-green-600/10"
-              bulletPoints={[
-                "Tailored to match job requirements",
-                "Professional tone and structure",
-                "Highlights your relevant achievements"
-              ]}
-            />
-      </div>
-      
-      {/* Social proof section - Trusted by companies */}
-      <motion.div 
-        className="mt-24 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-      >
-        <h3 className="text-xl text-muted-foreground mb-8">Trusted by professionals from companies like</h3>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto opacity-80">
-          {companies.map((company, index) => (
-            <div key={index} className="w-24 h-12 relative transition-all duration-300">
-              <Image 
-                src={company.logo} 
-                alt={company.name} 
-                fill
-                className="object-contain" 
-                sizes="100px"
-              />
-            </div>
-          ))}
-        </div>
-      </motion.div>
-      
-      {/* Enhanced CTA section */}
-      <motion.div 
-        className="mt-28 text-center"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="max-w-3xl mx-auto px-6 py-12 rounded-2xl bg-gradient-to-br from-white/50 to-white/30 backdrop-blur-lg border border-white/40 shadow-xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Ready to land your dream job?
-            </span>
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Join 50,000+ professionals who are getting more interviews with ResumeLM
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <AuthDialog>
-              <button 
-                className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-lg font-medium shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <AuthDialog>
+                <button className="group px-8 py-4 bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-500 hover:to-violet-600 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+                  <span className="flex items-center gap-2">
+                    Start Building Now
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                  </span>
+                </button>
+              </AuthDialog>
+              
+              <Link 
+                href="https://github.com/olyaiy/resume-lm" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:bg-slate-800/50"
               >
-                Create Your Free Resume
-              </button>
-            </AuthDialog>
-            <Link 
-              href="https://github.com/olyaiy/resume-lm" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 rounded-lg bg-white/80 border border-purple-200/40 text-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                Open Source on Github
-              </span>
-            </Link>
+                View on GitHub
+              </Link>
+            </div>
+            
+            <div className="flex items-center justify-center gap-6 mt-8 text-slate-400">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                <span>Free Forever</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-cyan-400" />
+                <span>Secure & Private</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Rocket className="w-5 h-5 text-violet-400" />
+                <span>2-Minute Setup</span>
+              </div>
+            </div>
           </div>
-          
-          <p className="text-sm text-muted-foreground mt-6 flex items-center justify-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-green-500" />
-            No credit card required • 100% free
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Sticky mobile CTA - only visible on mobile/tablet */}
-      <div className="md:hidden fixed bottom-4 left-0 right-0 z-50 px-4">
-        <AuthDialog>
-          <button 
-            className="flex items-center justify-center w-full py-3.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium shadow-lg"
-          >
-            Get Started Now
-          </button>
-        </AuthDialog>
+        </motion.div>
       </div>
     </section>
   );

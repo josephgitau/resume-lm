@@ -11,17 +11,17 @@ import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://resumelm.com"),
+  metadataBase: new URL("https://TalantaLM.com"),
   title: {
-    default: "ResumeLM - AI-Powered Resume Builder",
-    template: "%s | ResumeLM"
+    default: "TalantaLM - AI-Powered Resume Builder",
+    template: "%s | TalantaLM"
   },
   description: "Create tailored, ATS-optimized resumes powered by AI. Land your dream tech job with personalized resume optimization.",
-  applicationName: "ResumeLM",
+  applicationName: "TalantaLM",
   keywords: ["resume builder", "AI resume", "ATS optimization", "tech jobs", "career tools", "job application"],
-  authors: [{ name: "ResumeLM" }],
-  creator: "ResumeLM",
-  publisher: "ResumeLM",
+  authors: [{ name: "TalantaLM" }],
+  creator: "TalantaLM",
+  publisher: "TalantaLM",
   formatDetection: {
     email: false,
     address: false,
@@ -35,24 +35,24 @@ export const metadata: Metadata = {
   // manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
-    siteName: "ResumeLM",
-    title: "ResumeLM - AI-Powered Resume Builder",
+    siteName: "TalantaLM",
+    title: "TalantaLM - AI-Powered Resume Builder",
     description: "Create tailored, ATS-optimized resumes powered by AI. Land your dream tech job with personalized resume optimization.",
     images: [
       {
         url: "/og.webp",
         width: 1200,
         height: 630,
-        alt: "ResumeLM - AI Resume Builder",
+        alt: "TalantaLM - AI Resume Builder",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ResumeLM - AI-Powered Resume Builder",
+    title: "TalantaLM - AI-Powered Resume Builder",
     description: "Create tailored, ATS-optimized resumes powered by AI. Land your dream tech job with personalized resume optimization.",
     images: ["/og.webp"],
-    creator: "@resumelm",
+    creator: "@TalantaLM",
   },
   robots: {
     index: true,

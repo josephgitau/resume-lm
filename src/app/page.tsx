@@ -3,7 +3,6 @@ import FeatureHighlights from "@/components/landing/FeatureHighlights";
 import { Hero } from "@/components/landing/Hero";
 import { PricingPlans } from "@/components/landing/PricingPlans";
 import { VideoShowcase } from "@/components/landing/VideoShowcase";
-import { CreatorStory } from "@/components/landing/creator-story";
 import { Footer } from "@/components/layout/footer";
 import { NavLinks } from "@/components/layout/nav-links";
 import { Logo } from "@/components/ui/logo";
@@ -46,9 +45,6 @@ export default async function Page() {
       
       {/* Feature Highlights Section */}
       <FeatureHighlights />
-      
-      {/* Creator Story Section */}
-      <CreatorStory />
       
       {/* Pricing Plans Section */}
       <PricingPlans />
