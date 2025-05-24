@@ -10,6 +10,7 @@ import { generateObject } from "ai";
 import { initializeAIClient } from "@/utils/ai-tools";
 import { resumeScoreSchema } from "@/lib/zod-schemas";
 import { getSubscriptionPlan } from "../stripe/actions";
+import { logger } from "@/utils/logger";
 
 
 //  SUPABASE ACTIONS
@@ -265,9 +266,9 @@ export async function createTailoredResume(
   companyName: string,
   tailoredContent: z.infer<typeof simplifiedResumeSchema>
 ) {
-  console.log('[createTailoredResume] Received jobId:', jobId);
-  console.log('[createTailoredResume] baseResume ID:', baseResume?.id);
-  console.log('[createTailoredResume] Is jobId valid UUID?:', /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(jobId || ''));
+  logger.debug('[createTailoredResume] Received jobId:', jobId);
+  logger.debug('[createTailoredResume] baseResume ID:', baseResume?.id);
+  logger.debug('[createTailoredResume] Is jobId valid UUID?:', /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(jobId || ''));
 
   const supabase = await createClient();
   const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -401,8 +402,7 @@ export async function generateResumeScore(
   const aiClient = isPro ? initializeAIClient(config, isPro) : initializeAIClient(config);
 
 
-  console.log("RESUME IS", resume);
-  // console.log("AICLIENT IS", aiClient);
+  logger.debug('Scoring resume', resume);
 
   try {
     const { object } = await generateObject({
