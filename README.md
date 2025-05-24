@@ -152,6 +152,14 @@ This application requires several tables in your Supabase database:
 
 The complete schema with all required fields is provided in the `schema.sql` file.
 
+## 🧪 Running Tests
+
+Run the unit tests with:
+
+```bash
+pnpm test
+```
+
 ## 🏗️ Project Status
 
 ### Production Ready Features
