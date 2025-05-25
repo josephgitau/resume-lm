@@ -1,201 +1,278 @@
-# ResumeLM - AI-Powered Resume Builder
+<div align="center">
 
-Try it out at [test.com](https://test.com)!
+# 🚀 ResumeLM - AI-Powered Resume Builder
 
-> 🚧 **Under Active Development** 
+**Create professional, ATS-optimized resumes with the power of AI**
 
-An intelligent, open-source resume builder powered by AI that helps create and tailor resumes for specific job applications. Built with Next.js 15, React 19, TypeScript, and Shadcn UI.
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-resumelm.com-blue?style=for-the-badge)](https://resumelm.com)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
+[![Built with Next.js](https://img.shields.io/badge/Built_with-Next.js_15-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 
-![Dashboard Screenshot](public/images/ss1.webp)
+</div>
 
-## ✨ Live Demo
+---
 
-Check out the live demo at [resumelm.com](https://resumelm.com)
+## 📖 Table of Contents
+
+- [✨ Overview](#-overview)
+- [🌟 Key Features](#-key-features)
+- [🎯 Why ResumeLM?](#-why-resumelm)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🚀 Quick Start](#-quick-start)
+- [📊 Database Setup](#-database-setup)
+- [🎨 Design Philosophy](#-design-philosophy)
+- [🧪 Testing](#-testing)
+- [🗺️ Roadmap](#️-roadmap)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
+## ✨ Overview
+
+ResumeLM is an intelligent, open-source resume builder that leverages AI to help you create compelling, tailored resumes for specific job applications. With a modern, intuitive interface and powerful AI integration, it streamlines the resume creation process while ensuring professional quality output.
+
+> 🚧 **Currently in active development** - New features being added regularly!
+
+### 🎯 Try It Now
+**Live Demo**: [resumelm.com](https://resumelm.com)
+
+![Dashboard Preview](public/images/ss1.webp)
 
 ## 🌟 Key Features
 
-### Resume Management
-- 📝 Two-tier resume system:
-  - **Base Resumes**: Foundation templates for your professional profile
-  - **Tailored Resumes**: AI-optimized versions for specific job applications
-- 💼 Comprehensive section management for:
-  - Work Experience
-  - Education
-  - Projects
-  - Skills
-- 📊 Resume scoring system to measure effectiveness
-- 🗂️ Resume sorting and organization
-- 📱 Mobile-first approach with responsive layouts
-- 🎨 Modern, responsive design with soft gradient minimalist theme
+### 📝 Intelligent Resume Management
+- **Two-Tier System**: Create base templates and AI-tailored versions for specific jobs
+- **Comprehensive Sections**: Work experience, education, projects, skills, and more
+- **Smart Scoring**: Built-in resume effectiveness measurement
+- **Organization Tools**: Sort, filter, and manage multiple resumes effortlessly
 
-![Resume Editor](public/images/ss2.webp)
-
-### AI Integration
-- 🤖 AI-powered content suggestions for all resume sections
-- 💡 Smart content optimization and improvement recommendations
-- 🎯 Intelligent job description analysis
-- 💬 Interactive AI assistant for resume writing guidance
-- ✨ Real-time content enhancement suggestions
-- 🔄 Multiple AI model support (OpenAI, Claude, Gemini, DeepSeek, Groq)
+### 🤖 Advanced AI Integration
+- **Multi-Model Support**: OpenAI, Claude, Gemini, DeepSeek, and Groq
+- **Content Optimization**: Real-time suggestions and improvements
+- **Job Analysis**: Intelligent parsing of job descriptions for targeted tailoring
+- **Interactive Assistant**: AI-powered guidance throughout the writing process
 
 ![AI Assistant](public/images/ss4.webp)
 
-### Cover Letter Generation
-- 📝 Integrated cover letter editor
-- 🤖 AI-assisted cover letter creation
-- 🔄 Synchronized with resume data
-- 📁 Export capabilities
+### 💼 Professional Features
+- **Cover Letter Generation**: AI-assisted cover letters synchronized with resume data
+- **PDF Export**: High-quality, ATS-friendly PDF generation
+- **Profile Management**: Centralized storage of your professional information
+- **Subscription Tiers**: Free and Pro plans with Stripe integration
 
-### Profile Management
-- 👤 User profile creation and management
-- 🎓 Education history tracking
-- 💼 Work experience management
-- 🛠️ Skills inventory
-- 🚀 Projects showcase
+### 🔒 Enterprise-Grade Security
+- **Row Level Security (RLS)**: Database-level data protection
+- **User Authentication**: Secure Supabase Auth integration
+- **Data Privacy**: Your information stays protected and private
 
-### Technical Features
-- 🔒 Row Level Security (RLS) for data protection
-- 🚀 Server-side rendering with Next.js 15 App Router
-- 📄 PDF generation and preview
-- 🎨 Custom design system with consistent UI/UX
-- 🔄 Real-time updates and preview
+![Resume Editor](public/images/ss2.webp)
 
-### Subscription Features
-- 🆓 Free tier with limited functionality
-- ⭐ Pro subscription plan with enhanced features
-- 💳 Stripe integration for payment processing
-- 🔄 Plan upgrade/downgrade capabilities
+## 🎯 Why ResumeLM?
 
-## 🎨 Design System
-
-### Core Principles
-- **Layered Depth**: Multiple translucent layers create visual hierarchy
-- **Organic Motion**: Subtle animations suggest liveliness without distraction
-- **Purposeful White Space**: Generous spacing improves content digestion
-- **Consistent Interaction**: Predictable hover and active states
+| Traditional Resume Builders | ResumeLM |
+|---------------------------|----------|
+| ❌ Generic templates | ✅ AI-powered customization |
+| ❌ Manual content creation | ✅ Intelligent content suggestions |
+| ❌ One-size-fits-all approach | ✅ Job-specific tailoring |
+| ❌ Limited formatting options | ✅ Professional, ATS-optimized designs |
+| ❌ Closed-source, expensive | ✅ Open-source, transparent |
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- Next.js 15 (App Router)
-- React 19
-- TypeScript
-- Shadcn UI Components
-- Tailwind CSS
-- React PDF
+### Frontend Excellence
+- **Next.js 15** - App Router with Server Components
+- **React 19** - Latest React features and performance
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Shadcn UI** - Beautiful, accessible components
 
-### AI & Data Processing
-- OpenAI Integration
-- Server Components for AI Processing
-- Structured JSON Data Format
+### AI & Backend Power
+- **Multiple AI Providers** - OpenAI, Claude, Gemini, DeepSeek, Groq
+- **PostgreSQL** - Robust, scalable database
+- **Prisma ORM** - Type-safe database operations
+- **Supabase** - Authentication and real-time features
 
-### Database
-- PostgreSQL with Row Level Security
-- Prisma ORM
-- Supabase Auth
+### Developer Experience
+- **ESLint & Prettier** - Code quality and formatting
+- **Husky** - Git hooks for quality control
+- **Jest** - Comprehensive testing suite
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-1. Clone the repository:
+### Prerequisites
+- Node.js 18+ and npm/pnpm
+- Supabase account
+- AI provider API keys (OpenAI, Claude, etc.)
+
+### Installation
+
+1. **Clone the repository**
 ```bash
 git clone https://github.com/olyaiy/resume-lm.git
+cd resume-lm
 ```
 
-2. Install dependencies:
+2. **Install dependencies**
 ```bash
 npm install
 # or
 pnpm install
 ```
 
-3. Set up your environment variables:
+3. **Environment setup**
 ```bash
 cp .env.example .env.local
 ```
 
-Required environment variables: Look in the `.env.example` file for the full list of required variables.
+4. **Configure your environment variables**
+```env
+# Database
+DATABASE_URL=your_supabase_db_url
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-4. Set up the database:
+# AI Providers
+OPENAI_API_KEY=your_openai_key
+ANTHROPIC_API_KEY=your_claude_key
+# ... additional provider keys
+```
 
-This application uses Supabase for authentication and database features. You need to create a Supabase project and set up the required tables.
+5. **Set up the database** (see [Database Setup](#-database-setup))
 
-**Option 1: Using the SQL Editor in Supabase Dashboard**
-   - Copy the contents of `schema.sql` from this repository
-   - Open your Supabase project dashboard
-   - Go to SQL Editor
-   - Paste and run the SQL script
-
-**Option 2: Using the Supabase CLI**
-   - Install the Supabase CLI
-   - Run the following command:
-   ```bash
-   supabase db push --db-url=your_supabase_db_url schema.sql
-   ```
-
-5. Start the development server:
+6. **Start development server**
 ```bash
 npm run dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000](http://localhost:3000) to see your application running!
 
-### Database Schema
+## 📊 Database Setup
 
-This application requires several tables in your Supabase database:
+### Quick Setup via Supabase Dashboard
 
-- **profiles**: Stores user profile information including work experience, education, and skills
-- **resumes**: Stores user-created resumes and their content
-- **jobs**: Tracks job descriptions for resume tailoring
-- **subscriptions**: Manages user subscription status
+1. Create a new Supabase project
+2. Navigate to SQL Editor in your dashboard
+3. Copy and execute the schema from `schema.sql`
 
-The complete schema with all required fields is provided in the `schema.sql` file.
-
-## 🧪 Running Tests
-
-Run the unit tests with:
+### CLI Setup (Advanced)
 
 ```bash
-pnpm test
+# Install Supabase CLI
+npm install -g @supabase/cli
+
+# Push schema to your database
+supabase db push --db-url=your_supabase_db_url schema.sql
 ```
 
-## 🏗️ Project Status
+### Core Tables
+- **profiles** - User profile and professional information
+- **resumes** - Resume content and metadata
+- **jobs** - Job descriptions for tailoring
+- **subscriptions** - User subscription management
 
-### Production Ready Features
-- ✅ Complete resume management system
-- ✅ AI-powered content generation and optimization
-- ✅ PDF export functionality
-- ✅ Responsive design system
-- ✅ User authentication and authorization
-- ✅ Profile management
-- ✅ Real-time preview and editing
+## 🎨 Design Philosophy
 
-### Upcoming Features
-- 🔄 Enhanced AI tailoring algorithms
-- 🔄 Additional resume templates
-- 🔄 Advanced PDF customization
-- 🔄 Job application tracking
-- 🔄 Analytics dashboard
+### Core Principles
 
-## 📝 Contributing
+**🎯 Minimalist Elegance**
+- Clean, distraction-free interface
+- Purposeful use of white space
+- Focus on content over decoration
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+**🌊 Layered Depth**
+- Subtle shadows and transparency
+- Visual hierarchy through elevation
+- Smooth, organic animations
+
+**📱 Mobile-First Responsive**
+- Optimized for all screen sizes
+- Touch-friendly interactions
+- Consistent experience across devices
+
+**♿ Accessibility First**
+- WCAG 2.1 compliant components
+- Keyboard navigation support
+- Screen reader optimization
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm test:watch
+
+# Run tests with coverage
+npm test:coverage
+```
+
+## 🗺️ Roadmap
+
+### 🚀 Current Sprint
+- [ ] Enhanced AI tailoring algorithms
+- [ ] Additional resume templates
+- [ ] Advanced PDF customization options
+
+### 🔮 Future Features
+- [ ] Job application tracking system
+- [ ] Analytics and insights dashboard
+- [ ] Team collaboration features
+- [ ] API for third-party integrations
+- [ ] Mobile app development
+
+### 📈 Performance Goals
+- [ ] Sub-2s page load times
+- [ ] 95+ Lighthouse scores
+- [ ] Enhanced SEO optimization
+
+## 🤝 Contributing
+
+We welcome contributions from developers of all skill levels! Here's how to get started:
+
+### Quick Contribution Guide
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes** following our coding standards
+4. **Write tests** for new functionality
+5. **Submit a pull request** with a clear description
+
+### Development Guidelines
+- Follow TypeScript best practices
+- Write meaningful commit messages
+- Update documentation for new features
+- Ensure all tests pass before submitting
+
+**Read our full [Contributing Guide](CONTRIBUTING.md) for detailed information.**
 
 ## 📄 License
 
-[GNU Affero General Public License v3 (AGPL-3.0)](LICENSE)
+**GNU Affero General Public License v3 (AGPL-3.0)**
 
-This project is licensed under the GNU AGPL v3 license. This means:
-- ✅ You can view, use, and modify the code
-- ✅ You can distribute the code
-- ✅ You must keep the source code open source
-- ✅ Any modifications must also be under AGPL-3.0
-- ❌ You cannot use this code in closed-source commercial applications
-- ❌ You cannot use this code to provide a similar service without making your code open source
+### What this means:
 
-For more details, see the [full license text](LICENSE).
+✅ **You CAN:**
+- View, use, and modify the code
+- Distribute the code and your modifications
+- Use it for personal and commercial purposes
+
+❌ **You CANNOT:**
+- Use this code in closed-source commercial applications
+- Provide a similar service without open-sourcing your code
+
+🔒 **You MUST:**
+- Keep the source code open source
+- License any modifications under AGPL-3.0
+- Provide source code to users of your service
+
+[📋 Read the full license](LICENSE) for complete terms.
 
 ---
 
-Built with ❤️ using [Next.js](https://nextjs.org/)
+<div align="center">
+
+**Built with ❤️ by the open-source community**
+
+[🌟 Star us on GitHub](https://github.com/olyaiy/resume-lm) • [🐛 Report Issues](https://github.com/olyaiy/resume-lm/issues) • [💬 Join Discussions](https://github.com/olyaiy/resume-lm/discussions)
+
+</div>
