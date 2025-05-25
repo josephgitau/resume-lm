@@ -1,6 +1,6 @@
 # ResumeLM - AI-Powered Resume Builder
 
-Try it out at [resumelm.com](https://resumelm.com)!
+Try it out at [test.com](https://test.com)!
 
 > 🚧 **Under Active Development** 
 
