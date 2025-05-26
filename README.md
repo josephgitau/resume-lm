@@ -33,7 +33,7 @@ ResumeLM is an intelligent, open-source resume builder that leverages AI to help
 > 🚧 **Currently in active development** - New features being added regularly!
 
 ### 🎯 Try It Now
-**Live Demo**: [resumelm.com](https://resumelm.com)
+**Live Demo**: [Talantalm.com](https://resume-lm-weld.vercel.app/)
 
 ![Dashboard Preview](public/images/ss1.webp)
 
@@ -107,7 +107,7 @@ ResumeLM is an intelligent, open-source resume builder that leverages AI to help
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/olyaiy/resume-lm.git
+git https://github.com/josephgitau/resume-lm.git
 cd resume-lm
 ```
 
@@ -273,6 +273,6 @@ We welcome contributions from developers of all skill levels! Here's how to get 
 
 **Built with ❤️ by the open-source community**
 
-[🌟 Star us on GitHub](https://github.com/olyaiy/resume-lm) • [🐛 Report Issues](https://github.com/olyaiy/resume-lm/issues) • [💬 Join Discussions](https://github.com/olyaiy/resume-lm/discussions)
+[🌟 Star us on GitHub](https://github.com/josephgitau/resume-lm) • [🐛 Report Issues](https://github.com/josephgitau/resume-lm/issues) • [💬 Join Discussions](https://github.com/josephgitau/resume-lm/discussions)
 
 </div>
