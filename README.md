@@ -4,7 +4,7 @@
 
 **Create professional, ATS-optimized resumes with the power of AI**
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-resumelm.com-blue?style=for-the-badge)](https://resumelm.com)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-TalantaLM.com-blue?style=for-the-badge)](https://resume-lm-weld.vercel.app/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 [![Built with Next.js](https://img.shields.io/badge/Built_with-Next.js_15-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 
